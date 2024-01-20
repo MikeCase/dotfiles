@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# Source all additional functions.
+
+for file in "${BASE_CONFIG}/functions/"*; do
+    if [ -f "$file" ]; then
+        # echo "Sourcing $file"
+        source "$file"
+    fi
+done
+
+
+
+
+
+
+
+
+
+

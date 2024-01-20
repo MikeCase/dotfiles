@@ -1,0 +1,21 @@
+# PATH
+
+## Need to make this more dynamic, as some systems may not have all these apps installed,
+## or they may be installed in different directories. 
+## Not sure how I want to organize that yet however. 
+## For example my laptop doesn't have neovim or android studio installed. 
+
+NEOVIM="${HOME}/apps/neovim/bin/"
+VLANG="${HOME}/.vlang/v/"
+GOLANG="/usr/local/go/bin"
+ANDROID_STUDIO="${HOME}/android-studio/bin"
+MODULAR_HOME="${HOME}/.modular"
+MOJO_BIN="pkg/packages.modular.com_mojo/bin"
+USR_LOCAL="/usr/local"
+SNAP="/snap/bin"
+KOTLINBIN="${HOME}/.sdkman/candidates/kotlin/current/bin/"
+# Normal paths that should be available.
+export PATH=$USR_LOCAL/sbin:$USR_LOCAL/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$USR_LOCAL/games:$SNAP
+
+# Additional paths for various software. 
+export PATH=$PATH:$MODULAR_HOME/$MOJO_BIN:$LOCALBIN:$VLANG:$ANDROID_STUDIO:$NEOVIM:$GOLANG:$KOTLINBIN
