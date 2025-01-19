@@ -26,3 +26,6 @@ alias ap='ansible-playbook'
 
 # Tmux
 alias tma='tmux attach-session'
+
+# Update
+alias update='sudo apt update && sudo apt upgrade -y'
