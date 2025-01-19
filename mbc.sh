@@ -1,13 +1,22 @@
 #!/usr/bin/env bash
 export INSTDIR="${HOME}/.config/dotfiles"
 export BASHRC="${HOME}/.bashrc"
-APPLIST=("dig" "tmux" "ansible-playbook" "ssh" )
+
+# Dependencies required to use all features of this bashrc. 
+declare -A DEPS # Declaring associative array to associate package with app-name
+DEPS["dig"]="dnsutils"
+DEPS["tmux"]="tmux"
+DEPS["ansible-playbook"]="ansible"
+DEPS["ssh"]="openssh-client"
+# APPLIST=("dig" "tmux" "ansible-playbook" "ssh" )
+
+# Function to check for required dependencies. Only recommends installation of dependencies does not require it. 
 check_dependencies() {
-    for app in "${APPLIST[@]}"; do
+    for app in "${!DEPS[@]}"; do
         if command -v "$app" &> /dev/null; then
             echo "$app is installed!"
         else
-            echo "$app is not installed"
+            echo "$app is not installed. Recommend installing ${DEPS[$app]}"
         fi
     done
 }
