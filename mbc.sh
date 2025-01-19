@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 export INSTDIR="${HOME}/.config/dotfiles"
 export BASHRC="${HOME}/.bashrc"
+APPLIST=("dig" "tmux" "ansible-playbook" "ssh" )
+check_dependencies() {
+    for app in "${APPLIST[@]}"; do
+        if command -v "$app" &> /dev/null; then
+            echo "$app is installed!"
+        else
+            echo "$app is not installed"
+        fi
+    done
+}
 
 case $1 in
       install)
@@ -26,6 +36,7 @@ case $1 in
         eval "$(ln -s "${INSTDIR}/mbc.sh" "$HOME/.local/bin/")"
         echo "Activating new bash environment."
         source "${BASHRC}"
+        
     ;;
 
     remove)
@@ -46,10 +57,16 @@ case $1 in
         echo "Removed Mike's Bash Config"
     ;;
 
+    checkdeps)
+        echo "Checking for recommended dependencies"
+        check_dependencies
+    ;;
+
     *)
         echo "
         ${0##*/} install            Install bash scripts.
-        ${0##*/} remove             Remove bash scripts and revert to original system
+        ${0##*/} remove             Remove bash scripts and revert to original system.
+        ${0##*/} checkdeps          Check for recommended dependencies.
         "
     ;;
 
